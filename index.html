@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="maininfo">
+            <div class="header">
+                <form class="header__search">
+                    <input type="text" id="cityInput" autocomplete="off" placeholder="Chercher une ville..." class="header__input">
+
+                         <ul id="suggestionsList"></ul>
+
+                    <svg width="20px" height="20px" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M14.9536 14.9458L21 21M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </form>
+                <div class="header__units">
+                    <span class="header__units__celcius">&#176C</span>
+                    <span class="header__units__farenheit">&#176F</span>
+                </div>
+            </div>
+            <div class="body">
+                <h1 class="body__city"></h1>
+                <div class="body__datetime">
+                </div>
+                <div class="body__forecast">
+                    <span>Dégagé</span>
+                </div>
+                <div class="body__icon">
+                    <img src="http://openweathermap.org/img/wn/10d@4x.png">
+                </div>
+                <span class="body__temperature">
+                    12&#176
+                </span>
+                <div class="body__minmax">
+                    <span>Min: 8&#176</span>
+                    <span>Max: 15&#176</span>
+                </div>
+            </div>
+            <div class="info">
+                <div class="card">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 15.9998C11.4477 15.9998 11 16.4475 11 16.9998C11 17.5521 11.4477 17.9998 12 17.9998C12.5523 17.9998 13 17.5521 13 16.9998C13 16.4475 12.5523 15.9998 12 15.9998ZM12 15.9998V6M12 16.9998L12.0071 17.0069M16 16.9998C16 19.209 14.2091 20.9998 12 20.9998C9.79086 20.9998 8 19.209 8 16.9998C8 15.9854 8.37764 15.0591 9 14.354L9 6C9 4.34315 10.3431 3 12 3C13.6569 3 15 4.34315 15 6V14.354C15.6224 15.0591 16 15.9854 16 16.9998Z"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <div>
+                        <span class="card__spec">Ressenti</span>
+                        <span class="card__realfeel">12&#176</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M21 14.7C21 18.1794 19.0438 21 15.5 21C11.9562 21 10 18.1794 10 14.7C10 11.2206 15.5 3 15.5 3C15.5 3 21 11.2206 21 14.7Z"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M8 8.2C8 9.7464 7.11083 11 5.5 11C3.88917 11 3 9.7464 3 8.2C3 6.6536 5.5 3 5.5 3C5.5 3 8 6.6536 8 8.2Z"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <div>
+                        <span class="card__spec">Humidité</span>
+                        <span class="card__humidity">76%</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M15.7639 7C16.3132 6.38625 17.1115 6 18 6C19.6569 6 21 7.34315 21 9C21 10.6569 19.6569 12 18 12H3M8.50926 4.66667C8.87548 4.2575 9.40767 4 10 4C11.1046 4 12 4.89543 12 6C12 7.10457 11.1046 8 10 8H3M11.5093 19.3333C11.8755 19.7425 12.4077 20 13 20C14.1046 20 15 19.1046 15 18C15 16.8954 14.1046 16 13 16H3"
+                            stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <div>
+                        <span class="card__spec">Vent</span>
+                        <span class="card__wind">23 km/h</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 9C11.4477 9 11 9.44771 11 10V15.2676C10.4022 15.6134 10 16.2597 10 17C10 18.1046 10.8954 19 12 19C13.1046 19 14 18.1046 14 17C14 16.2597 13.5978 15.6134 13 15.2676V10C13 9.44771 12.5523 9 12 9Z"
+                            fill="#fff" />
+                        <path
+                            d="M11 6C11 5.44772 11.4477 5 12 5C12.5523 5 13 5.44772 13 6C13 6.55228 12.5523 7 12 7C11.4477 7 11 6.55228 11 6Z"
+                            fill="#fff" />
+                        <path
+                            d="M16 7C15.4477 7 15 7.44772 15 8C15 8.55229 15.4477 9 16 9C16.5523 9 17 8.55229 17 8C17 7.44772 16.5523 7 16 7Z"
+                            fill="#fff" />
+                        <path
+                            d="M6 13C5.44772 13 5 12.5523 5 12C5 11.4477 5.44772 11 6 11C6.55228 11 7 11.4477 7 12C7 12.5523 6.55228 13 6 13Z"
+                            fill="#fff" />
+                        <path
+                            d="M7 8C7 8.55229 7.44772 9 8 9C8.55228 9 9 8.55228 9 8C9 7.44772 8.55228 7 8 7C7.44772 7 7 7.44772 7 8Z"
+                            fill="#fff" />
+                        <path
+                            d="M18 13C17.4477 13 17 12.5523 17 12C17 11.4477 17.4477 11 18 11C18.5523 11 19 11.4477 19 12C19 12.5523 18.5523 13 18 13Z"
+                            fill="#fff" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23ZM12 20.9932C7.03321 20.9932 3.00683 16.9668 3.00683 12C3.00683 7.03321 7.03321 3.00683 12 3.00683C16.9668 3.00683 20.9932 7.03321 20.9932 12C20.9932 16.9668 16.9668 20.9932 12 20.9932Z"
+                            fill="#fff" />
+                    </svg>
+                    <div>
+                        <span class="card__spec">P-A</span>
+                        <span class="card__pressure">1034.2 hPa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="forecast">
+            <svg class="forecast__arrow" width="40px" height="40px" viewBox="0 0 24 24" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke="#fff" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+        </div>
+        <div class="forecast__day">
+            <div class="forecast__day__one">
+                <div class="forecast__day__one__datetime">
+                </div>
+                <div class="forecast__day__one__forecast">
+                    <span></span>
+                </div>
+                <div class="forecast__day__one__icon">
+                    <img src="">
+                </div>
+                <span class="forecast__day__one__temperature">
+                    En attente
+                </span>
+            </div>
+            <div class="forecast__day__two">
+                <div class="forecast__day__two__datetime">
+                </div>
+                <div class="forecast__day__two__forecast">
+                    <span></span>
+                </div>
+                <div class="forecast__day__two__icon">
+                    <img src="">
+                </div>
+                <span class="forecast__day__two__temperature">
+                    En attente
+                </span>
+            </div>
+            <div class="forecast__day__three">
+                <div class="forecast__day__three__datetime">
+                </div>
+                <div class="forecast__day__three__forecast">
+                    <span></span>
+                </div>
+                <div class="forecast__day__three__icon">
+                    <img src="">
+                </div>
+                <span class="forecast__day__three__temperature">
+                    En attente
+                </span>
+            </div>
+            <div class="forecast__day__four">
+                <div class="forecast__day__four__datetime">
+                </div>
+                <div class="forecast__day__four__forecast">
+                    <span></span>
+                </div>
+                <div class="forecast__day__four__icon">
+                    <img src="">
+                </div>
+                <span class="forecast__day__four__temperature">
+                    En attente
+                </span>
+            </div>
+            <div class="forecast__day__five">
+                <div class="forecast__day__five__datetime">
+                </div>
+                <div class="forecast__day__five__forecast">
+                    <span></span>
+                </div>
+                <div class="forecast__day__five__icon">
+                    <img src="">
+                </div>
+                <span class="forecast__day__five__temperature">
+                    En attente
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
